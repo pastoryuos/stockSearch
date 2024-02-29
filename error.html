@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+
+body {
+background-color: rgb(19, 29, 165);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+.bubble {
+background-color: rgb(230, 205, 205);
+color: rgb(0, 0, 0);
+padding: 30px;
+border-radius: 10px;
+text-align: center;
+width: 80vw;
+}
+
+.bubble h2 {
+font-weight: bold;
+}
+
+.bubble p, .bubble input[type="text"] {
+display: inline-block;
+vertical-align: middle;
+}
+
+.bubble input[type="submit"], .bubble input[type="button"] {
+background-color: #777799;
+color: white;
+border: none;
+padding: 10px;
+margin-top: 20px;
+cursor: pointer;
+}
+
+bubble input[type="submit"]:hover, .bubble input[type="button"]:hover {
+background-color: #940000;
+}
+
+.bubble p span {
+color: red;
+}
+
+.table-container {
+ background-color: white;
+ padding: 20px;
+ border-radius: 10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bubble">
+ <h2>Stock Search</h2>
+ <form action="/search" method="get" onsubmit="return validateForm()">
+    <p>Enter Stock Symbol<span>*</span></p>
+    <input type="text" id="ticker" name="ticker">
+    <br>
+    <div id="alert" class="alert alert-danger alert-dismissible" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>!</strong> Please fill out this field.
+    </div>
+    <div id="alert" class="alert alert-danger alert-dismissible" style="display: block;">
+        <strong>!</strong> Invalid ticker, please enter another.
+    </div>
+    <br>
+    <input type="submit" value="Search">
+    <input type="button" value="Clear" onclick="clearForm()">
+</form>
+</div>
+
+<script>
+function validateForm() {
+ var ticker = document.getElementById('ticker').value;
+ if (ticker == "") {
+ document.getElementById('alert').style.display = "block";
+ return false;
+ }
+}
+
+function clearForm() {
+ document.getElementById("ticker").value = "";
+ document.getElementById("results").innerHTML = "";
+}
+
+
+</script>
+
+</body>
+</html>
